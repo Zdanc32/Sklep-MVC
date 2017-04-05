@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d45d32246ca049dd9fd1b02348b9c9cf" Name="Diagram1">
+        <EntityTypeShape EntityType="SklepKomputerowyModel.Adresy" Width="1.5" PointX="3" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SklepKomputerowyModel.Egzemplarze" Width="1.5" PointX="7.5" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SklepKomputerowyModel.Faktury" Width="1.5" PointX="7.5" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SklepKomputerowyModel.Galeria_zdjęc" Width="1.5" PointX="7.5" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="SklepKomputerowyModel.Kategorie" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SklepKomputerowyModel.Kategorie_Producenci" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SklepKomputerowyModel.Klientt" Width="1.5" PointX="5.25" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SklepKomputerowyModel.Pozyjce_Faktury" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SklepKomputerowyModel.Producenci" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SklepKomputerowyModel.Produkty" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SklepKomputerowyModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SklepKomputerowyModel.Zamówienia" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SklepKomputerowyModel.zamówienia_produkty" Width="1.5" PointX="10.5" PointY="8.25" IsExpanded="true" />
+        <AssociationConnector Association="SklepKomputerowyModel.FK_Klientt_Adresy" ManuallyRouted="false" />
+        <AssociationConnector Association="SklepKomputerowyModel.FK_Egzemplarze_Produkty" ManuallyRouted="false" />
+        <AssociationConnector Association="SklepKomputerowyModel.FK_Pozyjce_Faktury_Egzemplarze" ManuallyRouted="false" />
+        <AssociationConnector Association="SklepKomputerowyModel.FK_Faktury_Klientt" ManuallyRouted="false" />
+        <AssociationConnector Association="SklepKomputerowyModel.FK_Pozyjce_Faktury_Faktury" ManuallyRouted="false" />
+        <AssociationConnector Association="SklepKomputerowyModel.FK_Galeria_zdjęc_Produkty" ManuallyRouted="false" />
+        <AssociationConnector Association="SklepKomputerowyModel.FK_Kategorie_Producenci_Kategorie" ManuallyRouted="false" />
+        <AssociationConnector Association="SklepKomputerowyModel.FK_Kategorie_Producenci_Producenci" ManuallyRouted="false" />
+        <AssociationConnector Association="SklepKomputerowyModel.FK_Produkty_Kategorie_Producenci" ManuallyRouted="false" />
+        <AssociationConnector Association="SklepKomputerowyModel.FK_Zamówienia_Klientt" ManuallyRouted="false" />
+        <AssociationConnector Association="SklepKomputerowyModel.FK_zamówienia_produkty_Produkty" ManuallyRouted="false" />
+        <AssociationConnector Association="SklepKomputerowyModel.FK_zamówienia_produkty_Zamówienia" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

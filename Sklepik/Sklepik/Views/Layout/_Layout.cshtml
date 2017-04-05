@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - SklepiX.pl</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+
+
+            <nav class="navbar navbar-inverse" style="margin-bottom:0px">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="Home">SklepiX.pl</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li>
+                            @Html.ActionLink("SklepiX.pl", "Index", "Home")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Rejestracja", "Index", "Rejestracja")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Logowanie", "Index", "Logowanie")
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Gabriel Zdancewicz --- sklep komputerowy ---</p>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

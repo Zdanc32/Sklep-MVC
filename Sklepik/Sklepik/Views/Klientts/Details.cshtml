@@ -1,0 +1,67 @@
+﻿@model Sklepik.Models.DB.Klientt
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Layout/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Klientt</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Imie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Imie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nazwisko)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nazwisko)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hasło)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hasło)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nr_tele)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nr_tele)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adresy.miasto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adresy.miasto)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdKlient }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

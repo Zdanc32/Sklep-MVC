@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SklepKomputerowyModelStoreContainer" CdmEntityContainer="SklepKomputerowyEntities">
+    <EntitySetMapping Name="Adresy">
+      <EntityTypeMapping TypeName="SklepKomputerowyModel.Adresy">
+        <MappingFragment StoreEntitySet="Adresy">
+          <ScalarProperty Name="IdAdres" ColumnName="IdAdres" />
+          <ScalarProperty Name="miasto" ColumnName="miasto" />
+          <ScalarProperty Name="miejscowość" ColumnName="miejscowość" />
+          <ScalarProperty Name="nr_domu" ColumnName="nr_domu" />
+          <ScalarProperty Name="kod_pocztowy" ColumnName="kod_pocztowy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Egzemplarze">
+      <EntityTypeMapping TypeName="SklepKomputerowyModel.Egzemplarze">
+        <MappingFragment StoreEntitySet="Egzemplarze">
+          <ScalarProperty Name="IdEgzemplarzu" ColumnName="IdEgzemplarzu" />
+          <ScalarProperty Name="IdProduktu" ColumnName="IdProduktu" />
+          <ScalarProperty Name="kod_produktu" ColumnName="kod_produktu" />
+          <ScalarProperty Name="cena" ColumnName="cena" />
+          <ScalarProperty Name="data_sprzedaży" ColumnName="data_sprzedaży" />
+          <ScalarProperty Name="data_zakupu" ColumnName="data_zakupu" />
+          <ScalarProperty Name="czy_sprzedano" ColumnName="czy_sprzedano" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Faktury">
+      <EntityTypeMapping TypeName="SklepKomputerowyModel.Faktury">
+        <MappingFragment StoreEntitySet="Faktury">
+          <ScalarProperty Name="IdFaktury" ColumnName="IdFaktury" />
+          <ScalarProperty Name="IdKlienta" ColumnName="IdKlienta" />
+          <ScalarProperty Name="nr_faktury" ColumnName="nr_faktury" />
+          <ScalarProperty Name="data_sprzedaży" ColumnName="data_sprzedaży" />
+          <ScalarProperty Name="cena" ColumnName="cena" />
+          <ScalarProperty Name="forma_płatności" ColumnName="forma_płatności" />
+          <ScalarProperty Name="rodzaj_dokumentu" ColumnName="rodzaj_dokumentu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Galeria_zdjęc">
+      <EntityTypeMapping TypeName="SklepKomputerowyModel.Galeria_zdjęc">
+        <MappingFragment StoreEntitySet="Galeria_zdjęc">
+          <ScalarProperty Name="Id_Galerii" ColumnName="Id_Galerii" />
+          <ScalarProperty Name="Id_Produktu" ColumnName="Id_Produktu" />
+          <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+          <ScalarProperty Name="zdjęcie" ColumnName="zdjęcie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kategorie">
+      <EntityTypeMapping TypeName="SklepKomputerowyModel.Kategorie">
+        <MappingFragment StoreEntitySet="Kategorie">
+          <ScalarProperty Name="Id_kategorii" ColumnName="Id_kategorii" />
+          <ScalarProperty Name="nazwa_kategorii" ColumnName="nazwa_kategorii" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kategorie_Producenci">
+      <EntityTypeMapping TypeName="SklepKomputerowyModel.Kategorie_Producenci">
+        <MappingFragment StoreEntitySet="Kategorie_Producenci">
+          <ScalarProperty Name="Id_Kat_prod" ColumnName="Id_Kat_prod" />
+          <ScalarProperty Name="Id_Kat" ColumnName="Id_Kat" />
+          <ScalarProperty Name="Id_producenta" ColumnName="Id_producenta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Klientt">
+      <EntityTypeMapping TypeName="SklepKomputerowyModel.Klientt">
+        <MappingFragment StoreEntitySet="Klientt">
+          <ScalarProperty Name="IdKlient" ColumnName="IdKlient" />
+          <ScalarProperty Name="Imie" ColumnName="Imie" />
+          <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="hasło" ColumnName="hasło" />
+          <ScalarProperty Name="Nr_tele" ColumnName="Nr_tele" />
+          <ScalarProperty Name="Id_Adresu" ColumnName="Id_Adresu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pozyjce_Faktury">
+      <EntityTypeMapping TypeName="SklepKomputerowyModel.Pozyjce_Faktury">
+        <MappingFragment StoreEntitySet="Pozyjce_Faktury">
+          <ScalarProperty Name="Id_pozycji" ColumnName="Id_pozycji" />
+          <ScalarProperty Name="Id_egzemplarzu" ColumnName="Id_egzemplarzu" />
+          <ScalarProperty Name="Id_faktury" ColumnName="Id_faktury" />
+          <ScalarProperty Name="cena" ColumnName="cena" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Producenci">
+      <EntityTypeMapping TypeName="SklepKomputerowyModel.Producenci">
+        <MappingFragment StoreEntitySet="Producenci">
+          <ScalarProperty Name="Id_producenta" ColumnName="Id_producenta" />
+          <ScalarProperty Name="Nazwa_producenta" ColumnName="Nazwa_producenta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Produkty">
+      <EntityTypeMapping TypeName="SklepKomputerowyModel.Produkty">
+        <MappingFragment StoreEntitySet="Produkty">
+          <ScalarProperty Name="Id_produktu" ColumnName="Id_produktu" />
+          <ScalarProperty Name="id_katergoria_prod" ColumnName="id_katergoria_prod" />
+          <ScalarProperty Name="nazwa_produktu" ColumnName="nazwa_produktu" />
+          <ScalarProperty Name="typ" ColumnName="typ" />
+          <ScalarProperty Name="wersja" ColumnName="wersja" />
+          <ScalarProperty Name="opis" ColumnName="opis" />
+          <ScalarProperty Name="zdjęcie" ColumnName="zdjęcie" />
+          <ScalarProperty Name="cena" ColumnName="cena" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="SklepKomputerowyModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Zamówienia">
+      <EntityTypeMapping TypeName="SklepKomputerowyModel.Zamówienia">
+        <MappingFragment StoreEntitySet="Zamówienia">
+          <ScalarProperty Name="IdZam" ColumnName="IdZam" />
+          <ScalarProperty Name="IdKli" ColumnName="IdKli" />
+          <ScalarProperty Name="data_złożenia_zamówienia" ColumnName="data_złożenia_zamówienia" />
+          <ScalarProperty Name="czy_przyjeto_zam" ColumnName="czy_przyjeto_zam" />
+          <ScalarProperty Name="data_przyjęcia_zam" ColumnName="data_przyjęcia_zam" />
+          <ScalarProperty Name="zapłacono" ColumnName="zapłacono" />
+          <ScalarProperty Name="data_wysyłki" ColumnName="data_wysyłki" />
+          <ScalarProperty Name="czy_zam_zrealizowano" ColumnName="czy_zam_zrealizowano" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="zamówienia_produkty">
+      <EntityTypeMapping TypeName="SklepKomputerowyModel.zamówienia_produkty">
+        <MappingFragment StoreEntitySet="zamówienia_produkty">
+          <ScalarProperty Name="id_zam_prod" ColumnName="id_zam_prod" />
+          <ScalarProperty Name="id_prod" ColumnName="id_prod" />
+          <ScalarProperty Name="id_zam" ColumnName="id_zam" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

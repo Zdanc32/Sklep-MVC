@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Sklepik.Models.DB.Klientt>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Imie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nazwisko)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hasło)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nr_tele)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adresy.miasto)
+        </th>
+        <th></th>
+    </tr>
+
+
+</table>

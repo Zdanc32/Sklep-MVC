@@ -1,0 +1,364 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SklepKomputerowyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Adresy">
+    <Key>
+      <PropertyRef Name="IdAdres" />
+    </Key>
+    <Property Name="IdAdres" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="miasto" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+    <Property Name="miejscowość" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+    <Property Name="nr_domu" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+    <Property Name="kod_pocztowy" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Klientt" Relationship="Self.FK_Klientt_Adresy" FromRole="Adresy" ToRole="Klientt" />
+  </EntityType>
+  <EntityType Name="Egzemplarze">
+    <Key>
+      <PropertyRef Name="IdEgzemplarzu" />
+    </Key>
+    <Property Name="IdEgzemplarzu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdProduktu" Type="Int32" />
+    <Property Name="kod_produktu" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+    <Property Name="cena" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="data_sprzedaży" Type="DateTime" Precision="0" />
+    <Property Name="data_zakupu" Type="DateTime" Precision="0" />
+    <Property Name="czy_sprzedano" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Produkty" Relationship="Self.FK_Egzemplarze_Produkty" FromRole="Egzemplarze" ToRole="Produkty" />
+    <NavigationProperty Name="Pozyjce_Faktury" Relationship="Self.FK_Pozyjce_Faktury_Egzemplarze" FromRole="Egzemplarze" ToRole="Pozyjce_Faktury" />
+  </EntityType>
+  <EntityType Name="Faktury">
+    <Key>
+      <PropertyRef Name="IdFaktury" />
+    </Key>
+    <Property Name="IdFaktury" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdKlienta" Type="Int32" />
+    <Property Name="nr_faktury" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+    <Property Name="data_sprzedaży" Type="DateTime" Precision="0" />
+    <Property Name="cena" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="forma_płatności" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="rodzaj_dokumentu" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Klientt" Relationship="Self.FK_Faktury_Klientt" FromRole="Faktury" ToRole="Klientt" />
+    <NavigationProperty Name="Pozyjce_Faktury" Relationship="Self.FK_Pozyjce_Faktury_Faktury" FromRole="Faktury" ToRole="Pozyjce_Faktury" />
+  </EntityType>
+  <EntityType Name="Galeria_zdjęc">
+    <Key>
+      <PropertyRef Name="Id_Galerii" />
+    </Key>
+    <Property Name="Id_Galerii" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Produktu" Type="Int32" />
+    <Property Name="nazwa" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="zdjęcie" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Produkty" Relationship="Self.FK_Galeria_zdjęc_Produkty" FromRole="Galeria_zdjęc" ToRole="Produkty" />
+  </EntityType>
+  <EntityType Name="Kategorie">
+    <Key>
+      <PropertyRef Name="Id_kategorii" />
+    </Key>
+    <Property Name="Id_kategorii" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nazwa_kategorii" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Kategorie_Producenci" Relationship="Self.FK_Kategorie_Producenci_Kategorie" FromRole="Kategorie" ToRole="Kategorie_Producenci" />
+  </EntityType>
+  <EntityType Name="Kategorie_Producenci">
+    <Key>
+      <PropertyRef Name="Id_Kat_prod" />
+    </Key>
+    <Property Name="Id_Kat_prod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Kat" Type="Int32" />
+    <Property Name="Id_producenta" Type="Int32" />
+    <NavigationProperty Name="Kategorie" Relationship="Self.FK_Kategorie_Producenci_Kategorie" FromRole="Kategorie_Producenci" ToRole="Kategorie" />
+    <NavigationProperty Name="Producenci" Relationship="Self.FK_Kategorie_Producenci_Producenci" FromRole="Kategorie_Producenci" ToRole="Producenci" />
+    <NavigationProperty Name="Produkty" Relationship="Self.FK_Produkty_Kategorie_Producenci" FromRole="Kategorie_Producenci" ToRole="Produkty" />
+  </EntityType>
+  <EntityType Name="Klientt">
+    <Key>
+      <PropertyRef Name="IdKlient" />
+    </Key>
+    <Property Name="IdKlient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Imie" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+    <Property Name="Nazwisko" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+    <Property Name="hasło" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+    <Property Name="Nr_tele" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="Id_Adresu" Type="Int32" />
+    <NavigationProperty Name="Adresy" Relationship="Self.FK_Klientt_Adresy" FromRole="Klientt" ToRole="Adresy" />
+    <NavigationProperty Name="Faktury" Relationship="Self.FK_Faktury_Klientt" FromRole="Klientt" ToRole="Faktury" />
+    <NavigationProperty Name="Zamówienia" Relationship="Self.FK_Zamówienia_Klientt" FromRole="Klientt" ToRole="Zamówienia" />
+  </EntityType>
+  <EntityType Name="Pozyjce_Faktury">
+    <Key>
+      <PropertyRef Name="Id_pozycji" />
+    </Key>
+    <Property Name="Id_pozycji" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_egzemplarzu" Type="Int32" />
+    <Property Name="Id_faktury" Type="Int32" />
+    <Property Name="cena" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Egzemplarze" Relationship="Self.FK_Pozyjce_Faktury_Egzemplarze" FromRole="Pozyjce_Faktury" ToRole="Egzemplarze" />
+    <NavigationProperty Name="Faktury" Relationship="Self.FK_Pozyjce_Faktury_Faktury" FromRole="Pozyjce_Faktury" ToRole="Faktury" />
+  </EntityType>
+  <EntityType Name="Producenci">
+    <Key>
+      <PropertyRef Name="Id_producenta" />
+    </Key>
+    <Property Name="Id_producenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nazwa_producenta" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Kategorie_Producenci" Relationship="Self.FK_Kategorie_Producenci_Producenci" FromRole="Producenci" ToRole="Kategorie_Producenci" />
+  </EntityType>
+  <EntityType Name="Produkty">
+    <Key>
+      <PropertyRef Name="Id_produktu" />
+    </Key>
+    <Property Name="Id_produktu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_katergoria_prod" Type="Int32" />
+    <Property Name="nazwa_produktu" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+    <Property Name="typ" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+    <Property Name="wersja" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+    <Property Name="opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="zdjęcie" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="cena" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Egzemplarze" Relationship="Self.FK_Egzemplarze_Produkty" FromRole="Produkty" ToRole="Egzemplarze" />
+    <NavigationProperty Name="Galeria_zdjęc" Relationship="Self.FK_Galeria_zdjęc_Produkty" FromRole="Produkty" ToRole="Galeria_zdjęc" />
+    <NavigationProperty Name="Kategorie_Producenci" Relationship="Self.FK_Produkty_Kategorie_Producenci" FromRole="Produkty" ToRole="Kategorie_Producenci" />
+    <NavigationProperty Name="zamówienia_produkty" Relationship="Self.FK_zamówienia_produkty_Produkty" FromRole="Produkty" ToRole="zamówienia_produkty" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Zamówienia">
+    <Key>
+      <PropertyRef Name="IdZam" />
+    </Key>
+    <Property Name="IdZam" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdKli" Type="Int32" />
+    <Property Name="data_złożenia_zamówienia" Type="DateTime" Precision="0" />
+    <Property Name="czy_przyjeto_zam" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="data_przyjęcia_zam" Type="DateTime" Precision="0" />
+    <Property Name="zapłacono" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="data_wysyłki" Type="DateTime" Precision="0" />
+    <Property Name="czy_zam_zrealizowano" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Klientt" Relationship="Self.FK_Zamówienia_Klientt" FromRole="Zamówienia" ToRole="Klientt" />
+    <NavigationProperty Name="zamówienia_produkty" Relationship="Self.FK_zamówienia_produkty_Zamówienia" FromRole="Zamówienia" ToRole="zamówienia_produkty" />
+  </EntityType>
+  <EntityType Name="zamówienia_produkty">
+    <Key>
+      <PropertyRef Name="id_zam_prod" />
+    </Key>
+    <Property Name="id_zam_prod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_prod" Type="Int32" />
+    <Property Name="id_zam" Type="Int32" />
+    <NavigationProperty Name="Produkty" Relationship="Self.FK_zamówienia_produkty_Produkty" FromRole="zamówienia_produkty" ToRole="Produkty" />
+    <NavigationProperty Name="Zamówienia" Relationship="Self.FK_zamówienia_produkty_Zamówienia" FromRole="zamówienia_produkty" ToRole="Zamówienia" />
+  </EntityType>
+  <Association Name="FK_Klientt_Adresy">
+    <End Role="Adresy" Type="Self.Adresy" Multiplicity="0..1" />
+    <End Role="Klientt" Type="Self.Klientt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Adresy">
+        <PropertyRef Name="IdAdres" />
+      </Principal>
+      <Dependent Role="Klientt">
+        <PropertyRef Name="Id_Adresu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Egzemplarze_Produkty">
+    <End Role="Produkty" Type="Self.Produkty" Multiplicity="0..1" />
+    <End Role="Egzemplarze" Type="Self.Egzemplarze" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Produkty">
+        <PropertyRef Name="Id_produktu" />
+      </Principal>
+      <Dependent Role="Egzemplarze">
+        <PropertyRef Name="IdProduktu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pozyjce_Faktury_Egzemplarze">
+    <End Role="Egzemplarze" Type="Self.Egzemplarze" Multiplicity="0..1" />
+    <End Role="Pozyjce_Faktury" Type="Self.Pozyjce_Faktury" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Egzemplarze">
+        <PropertyRef Name="IdEgzemplarzu" />
+      </Principal>
+      <Dependent Role="Pozyjce_Faktury">
+        <PropertyRef Name="Id_egzemplarzu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Faktury_Klientt">
+    <End Role="Klientt" Type="Self.Klientt" Multiplicity="0..1" />
+    <End Role="Faktury" Type="Self.Faktury" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Klientt">
+        <PropertyRef Name="IdKlient" />
+      </Principal>
+      <Dependent Role="Faktury">
+        <PropertyRef Name="IdKlienta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pozyjce_Faktury_Faktury">
+    <End Role="Faktury" Type="Self.Faktury" Multiplicity="0..1" />
+    <End Role="Pozyjce_Faktury" Type="Self.Pozyjce_Faktury" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faktury">
+        <PropertyRef Name="IdFaktury" />
+      </Principal>
+      <Dependent Role="Pozyjce_Faktury">
+        <PropertyRef Name="Id_faktury" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Galeria_zdjęc_Produkty">
+    <End Role="Produkty" Type="Self.Produkty" Multiplicity="0..1" />
+    <End Role="Galeria_zdjęc" Type="Self.Galeria_zdjęc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Produkty">
+        <PropertyRef Name="Id_produktu" />
+      </Principal>
+      <Dependent Role="Galeria_zdjęc">
+        <PropertyRef Name="Id_Produktu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kategorie_Producenci_Kategorie">
+    <End Role="Kategorie" Type="Self.Kategorie" Multiplicity="0..1" />
+    <End Role="Kategorie_Producenci" Type="Self.Kategorie_Producenci" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategorie">
+        <PropertyRef Name="Id_kategorii" />
+      </Principal>
+      <Dependent Role="Kategorie_Producenci">
+        <PropertyRef Name="Id_Kat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kategorie_Producenci_Producenci">
+    <End Role="Producenci" Type="Self.Producenci" Multiplicity="0..1" />
+    <End Role="Kategorie_Producenci" Type="Self.Kategorie_Producenci" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producenci">
+        <PropertyRef Name="Id_producenta" />
+      </Principal>
+      <Dependent Role="Kategorie_Producenci">
+        <PropertyRef Name="Id_producenta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Produkty_Kategorie_Producenci">
+    <End Role="Kategorie_Producenci" Type="Self.Kategorie_Producenci" Multiplicity="0..1" />
+    <End Role="Produkty" Type="Self.Produkty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategorie_Producenci">
+        <PropertyRef Name="Id_Kat_prod" />
+      </Principal>
+      <Dependent Role="Produkty">
+        <PropertyRef Name="id_katergoria_prod" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zamówienia_Klientt">
+    <End Role="Klientt" Type="Self.Klientt" Multiplicity="0..1" />
+    <End Role="Zamówienia" Type="Self.Zamówienia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Klientt">
+        <PropertyRef Name="IdKlient" />
+      </Principal>
+      <Dependent Role="Zamówienia">
+        <PropertyRef Name="IdKli" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_zamówienia_produkty_Produkty">
+    <End Role="Produkty" Type="Self.Produkty" Multiplicity="0..1" />
+    <End Role="zamówienia_produkty" Type="Self.zamówienia_produkty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Produkty">
+        <PropertyRef Name="Id_produktu" />
+      </Principal>
+      <Dependent Role="zamówienia_produkty">
+        <PropertyRef Name="id_prod" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_zamówienia_produkty_Zamówienia">
+    <End Role="Zamówienia" Type="Self.Zamówienia" Multiplicity="0..1" />
+    <End Role="zamówienia_produkty" Type="Self.zamówienia_produkty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zamówienia">
+        <PropertyRef Name="IdZam" />
+      </Principal>
+      <Dependent Role="zamówienia_produkty">
+        <PropertyRef Name="id_zam" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SklepKomputerowyEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Adresy" EntityType="Self.Adresy" />
+    <EntitySet Name="Egzemplarze" EntityType="Self.Egzemplarze" />
+    <EntitySet Name="Faktury" EntityType="Self.Faktury" />
+    <EntitySet Name="Galeria_zdjęc" EntityType="Self.Galeria_zdjęc" />
+    <EntitySet Name="Kategorie" EntityType="Self.Kategorie" />
+    <EntitySet Name="Kategorie_Producenci" EntityType="Self.Kategorie_Producenci" />
+    <EntitySet Name="Klientt" EntityType="Self.Klientt" />
+    <EntitySet Name="Pozyjce_Faktury" EntityType="Self.Pozyjce_Faktury" />
+    <EntitySet Name="Producenci" EntityType="Self.Producenci" />
+    <EntitySet Name="Produkty" EntityType="Self.Produkty" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Zamówienia" EntityType="Self.Zamówienia" />
+    <EntitySet Name="zamówienia_produkty" EntityType="Self.zamówienia_produkty" />
+    <AssociationSet Name="FK_Klientt_Adresy" Association="Self.FK_Klientt_Adresy">
+      <End Role="Adresy" EntitySet="Adresy" />
+      <End Role="Klientt" EntitySet="Klientt" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Egzemplarze_Produkty" Association="Self.FK_Egzemplarze_Produkty">
+      <End Role="Produkty" EntitySet="Produkty" />
+      <End Role="Egzemplarze" EntitySet="Egzemplarze" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pozyjce_Faktury_Egzemplarze" Association="Self.FK_Pozyjce_Faktury_Egzemplarze">
+      <End Role="Egzemplarze" EntitySet="Egzemplarze" />
+      <End Role="Pozyjce_Faktury" EntitySet="Pozyjce_Faktury" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Faktury_Klientt" Association="Self.FK_Faktury_Klientt">
+      <End Role="Klientt" EntitySet="Klientt" />
+      <End Role="Faktury" EntitySet="Faktury" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pozyjce_Faktury_Faktury" Association="Self.FK_Pozyjce_Faktury_Faktury">
+      <End Role="Faktury" EntitySet="Faktury" />
+      <End Role="Pozyjce_Faktury" EntitySet="Pozyjce_Faktury" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Galeria_zdjęc_Produkty" Association="Self.FK_Galeria_zdjęc_Produkty">
+      <End Role="Produkty" EntitySet="Produkty" />
+      <End Role="Galeria_zdjęc" EntitySet="Galeria_zdjęc" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kategorie_Producenci_Kategorie" Association="Self.FK_Kategorie_Producenci_Kategorie">
+      <End Role="Kategorie" EntitySet="Kategorie" />
+      <End Role="Kategorie_Producenci" EntitySet="Kategorie_Producenci" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kategorie_Producenci_Producenci" Association="Self.FK_Kategorie_Producenci_Producenci">
+      <End Role="Producenci" EntitySet="Producenci" />
+      <End Role="Kategorie_Producenci" EntitySet="Kategorie_Producenci" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Produkty_Kategorie_Producenci" Association="Self.FK_Produkty_Kategorie_Producenci">
+      <End Role="Kategorie_Producenci" EntitySet="Kategorie_Producenci" />
+      <End Role="Produkty" EntitySet="Produkty" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zamówienia_Klientt" Association="Self.FK_Zamówienia_Klientt">
+      <End Role="Klientt" EntitySet="Klientt" />
+      <End Role="Zamówienia" EntitySet="Zamówienia" />
+    </AssociationSet>
+    <AssociationSet Name="FK_zamówienia_produkty_Produkty" Association="Self.FK_zamówienia_produkty_Produkty">
+      <End Role="Produkty" EntitySet="Produkty" />
+      <End Role="zamówienia_produkty" EntitySet="zamówienia_produkty" />
+    </AssociationSet>
+    <AssociationSet Name="FK_zamówienia_produkty_Zamówienia" Association="Self.FK_zamówienia_produkty_Zamówienia">
+      <End Role="Zamówienia" EntitySet="Zamówienia" />
+      <End Role="zamówienia_produkty" EntitySet="zamówienia_produkty" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Sklepik.Models.DB.Galeria_zdjęc>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nazwa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.zdjęcie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Produkty.nazwa_produktu)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nazwa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.zdjęcie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Produkty.nazwa_produktu)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id_Galerii }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id_Galerii }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id_Galerii })
+        </td>
+    </tr>
+}
+
+</table>

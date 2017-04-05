@@ -1,0 +1,883 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SklepKomputerowyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Adresy">
+          <Key>
+            <PropertyRef Name="IdAdres" />
+          </Key>
+          <Property Name="IdAdres" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="miasto" Type="nchar" MaxLength="40" />
+          <Property Name="miejscowość" Type="nchar" MaxLength="40" />
+          <Property Name="nr_domu" Type="nchar" MaxLength="40" />
+          <Property Name="kod_pocztowy" Type="nchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="Egzemplarze">
+          <Key>
+            <PropertyRef Name="IdEgzemplarzu" />
+          </Key>
+          <Property Name="IdEgzemplarzu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdProduktu" Type="int" />
+          <Property Name="kod_produktu" Type="nchar" MaxLength="40" />
+          <Property Name="cena" Type="nchar" MaxLength="10" />
+          <Property Name="data_sprzedaży" Type="date" />
+          <Property Name="data_zakupu" Type="date" />
+          <Property Name="czy_sprzedano" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Faktury">
+          <Key>
+            <PropertyRef Name="IdFaktury" />
+          </Key>
+          <Property Name="IdFaktury" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdKlienta" Type="int" />
+          <Property Name="nr_faktury" Type="nchar" MaxLength="40" />
+          <Property Name="data_sprzedaży" Type="date" />
+          <Property Name="cena" Type="nchar" MaxLength="10" />
+          <Property Name="forma_płatności" Type="nchar" MaxLength="10" />
+          <Property Name="rodzaj_dokumentu" Type="nchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Galeria_zdjęc">
+          <Key>
+            <PropertyRef Name="Id_Galerii" />
+          </Key>
+          <Property Name="Id_Galerii" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Produktu" Type="int" />
+          <Property Name="nazwa" Type="nchar" MaxLength="10" />
+          <Property Name="zdjęcie" Type="image" />
+        </EntityType>
+        <EntityType Name="Kategorie">
+          <Key>
+            <PropertyRef Name="Id_kategorii" />
+          </Key>
+          <Property Name="Id_kategorii" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nazwa_kategorii" Type="nchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="Kategorie_Producenci">
+          <Key>
+            <PropertyRef Name="Id_Kat_prod" />
+          </Key>
+          <Property Name="Id_Kat_prod" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Kat" Type="int" />
+          <Property Name="Id_producenta" Type="int" />
+        </EntityType>
+        <EntityType Name="Klientt">
+          <Key>
+            <PropertyRef Name="IdKlient" />
+          </Key>
+          <Property Name="IdKlient" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Imie" Type="nchar" MaxLength="40" />
+          <Property Name="Nazwisko" Type="nchar" MaxLength="40" />
+          <Property Name="email" Type="nchar" MaxLength="40" />
+          <Property Name="hasło" Type="nchar" MaxLength="40" />
+          <Property Name="Nr_tele" Type="nchar" MaxLength="30" />
+          <Property Name="Id_Adresu" Type="int" />
+        </EntityType>
+        <EntityType Name="Pozyjce_Faktury">
+          <Key>
+            <PropertyRef Name="Id_pozycji" />
+          </Key>
+          <Property Name="Id_pozycji" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_egzemplarzu" Type="int" />
+          <Property Name="Id_faktury" Type="int" />
+          <Property Name="cena" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Producenci">
+          <Key>
+            <PropertyRef Name="Id_producenta" />
+          </Key>
+          <Property Name="Id_producenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa_producenta" Type="nchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="Produkty">
+          <Key>
+            <PropertyRef Name="Id_produktu" />
+          </Key>
+          <Property Name="Id_produktu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_katergoria_prod" Type="int" />
+          <Property Name="nazwa_produktu" Type="nchar" MaxLength="40" />
+          <Property Name="typ" Type="nchar" MaxLength="40" />
+          <Property Name="wersja" Type="nchar" MaxLength="40" />
+          <Property Name="opis" Type="varchar(max)" />
+          <Property Name="zdjęcie" Type="image" />
+          <Property Name="cena" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Zamówienia">
+          <Key>
+            <PropertyRef Name="IdZam" />
+          </Key>
+          <Property Name="IdZam" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdKli" Type="int" />
+          <Property Name="data_złożenia_zamówienia" Type="date" />
+          <Property Name="czy_przyjeto_zam" Type="nchar" MaxLength="10" />
+          <Property Name="data_przyjęcia_zam" Type="date" />
+          <Property Name="zapłacono" Type="nchar" MaxLength="10" />
+          <Property Name="data_wysyłki" Type="date" />
+          <Property Name="czy_zam_zrealizowano" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="zamówienia_produkty">
+          <Key>
+            <PropertyRef Name="id_zam_prod" />
+          </Key>
+          <Property Name="id_zam_prod" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_prod" Type="int" />
+          <Property Name="id_zam" Type="int" />
+        </EntityType>
+        <Association Name="FK_Egzemplarze_Produkty">
+          <End Role="Produkty" Type="Self.Produkty" Multiplicity="0..1" />
+          <End Role="Egzemplarze" Type="Self.Egzemplarze" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produkty">
+              <PropertyRef Name="Id_produktu" />
+            </Principal>
+            <Dependent Role="Egzemplarze">
+              <PropertyRef Name="IdProduktu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Faktury_Klientt">
+          <End Role="Klientt" Type="Self.Klientt" Multiplicity="0..1" />
+          <End Role="Faktury" Type="Self.Faktury" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klientt">
+              <PropertyRef Name="IdKlient" />
+            </Principal>
+            <Dependent Role="Faktury">
+              <PropertyRef Name="IdKlienta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Galeria_zdjęc_Produkty">
+          <End Role="Produkty" Type="Self.Produkty" Multiplicity="0..1" />
+          <End Role="Galeria_zdjęc" Type="Self.Galeria_zdjęc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produkty">
+              <PropertyRef Name="Id_produktu" />
+            </Principal>
+            <Dependent Role="Galeria_zdjęc">
+              <PropertyRef Name="Id_Produktu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kategorie_Producenci_Kategorie">
+          <End Role="Kategorie" Type="Self.Kategorie" Multiplicity="0..1" />
+          <End Role="Kategorie_Producenci" Type="Self.Kategorie_Producenci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategorie">
+              <PropertyRef Name="Id_kategorii" />
+            </Principal>
+            <Dependent Role="Kategorie_Producenci">
+              <PropertyRef Name="Id_Kat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kategorie_Producenci_Producenci">
+          <End Role="Producenci" Type="Self.Producenci" Multiplicity="0..1" />
+          <End Role="Kategorie_Producenci" Type="Self.Kategorie_Producenci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producenci">
+              <PropertyRef Name="Id_producenta" />
+            </Principal>
+            <Dependent Role="Kategorie_Producenci">
+              <PropertyRef Name="Id_producenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Klientt_Adresy">
+          <End Role="Adresy" Type="Self.Adresy" Multiplicity="0..1" />
+          <End Role="Klientt" Type="Self.Klientt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adresy">
+              <PropertyRef Name="IdAdres" />
+            </Principal>
+            <Dependent Role="Klientt">
+              <PropertyRef Name="Id_Adresu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pozyjce_Faktury_Egzemplarze">
+          <End Role="Egzemplarze" Type="Self.Egzemplarze" Multiplicity="0..1" />
+          <End Role="Pozyjce_Faktury" Type="Self.Pozyjce_Faktury" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Egzemplarze">
+              <PropertyRef Name="IdEgzemplarzu" />
+            </Principal>
+            <Dependent Role="Pozyjce_Faktury">
+              <PropertyRef Name="Id_egzemplarzu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pozyjce_Faktury_Faktury">
+          <End Role="Faktury" Type="Self.Faktury" Multiplicity="0..1" />
+          <End Role="Pozyjce_Faktury" Type="Self.Pozyjce_Faktury" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faktury">
+              <PropertyRef Name="IdFaktury" />
+            </Principal>
+            <Dependent Role="Pozyjce_Faktury">
+              <PropertyRef Name="Id_faktury" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Produkty_Kategorie_Producenci">
+          <End Role="Kategorie_Producenci" Type="Self.Kategorie_Producenci" Multiplicity="0..1" />
+          <End Role="Produkty" Type="Self.Produkty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategorie_Producenci">
+              <PropertyRef Name="Id_Kat_prod" />
+            </Principal>
+            <Dependent Role="Produkty">
+              <PropertyRef Name="id_katergoria_prod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zamówienia_Klientt">
+          <End Role="Klientt" Type="Self.Klientt" Multiplicity="0..1" />
+          <End Role="Zamówienia" Type="Self.Zamówienia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klientt">
+              <PropertyRef Name="IdKlient" />
+            </Principal>
+            <Dependent Role="Zamówienia">
+              <PropertyRef Name="IdKli" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_zamówienia_produkty_Produkty">
+          <End Role="Produkty" Type="Self.Produkty" Multiplicity="0..1" />
+          <End Role="zamówienia_produkty" Type="Self.zamówienia_produkty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produkty">
+              <PropertyRef Name="Id_produktu" />
+            </Principal>
+            <Dependent Role="zamówienia_produkty">
+              <PropertyRef Name="id_prod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_zamówienia_produkty_Zamówienia">
+          <End Role="Zamówienia" Type="Self.Zamówienia" Multiplicity="0..1" />
+          <End Role="zamówienia_produkty" Type="Self.zamówienia_produkty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zamówienia">
+              <PropertyRef Name="IdZam" />
+            </Principal>
+            <Dependent Role="zamówienia_produkty">
+              <PropertyRef Name="id_zam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SklepKomputerowyModelStoreContainer">
+          <EntitySet Name="Adresy" EntityType="Self.Adresy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Egzemplarze" EntityType="Self.Egzemplarze" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Faktury" EntityType="Self.Faktury" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Galeria_zdjęc" EntityType="Self.Galeria_zdjęc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kategorie" EntityType="Self.Kategorie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kategorie_Producenci" EntityType="Self.Kategorie_Producenci" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Klientt" EntityType="Self.Klientt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pozyjce_Faktury" EntityType="Self.Pozyjce_Faktury" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producenci" EntityType="Self.Producenci" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Produkty" EntityType="Self.Produkty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zamówienia" EntityType="Self.Zamówienia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="zamówienia_produkty" EntityType="Self.zamówienia_produkty" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Egzemplarze_Produkty" Association="Self.FK_Egzemplarze_Produkty">
+            <End Role="Produkty" EntitySet="Produkty" />
+            <End Role="Egzemplarze" EntitySet="Egzemplarze" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Faktury_Klientt" Association="Self.FK_Faktury_Klientt">
+            <End Role="Klientt" EntitySet="Klientt" />
+            <End Role="Faktury" EntitySet="Faktury" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Galeria_zdjęc_Produkty" Association="Self.FK_Galeria_zdjęc_Produkty">
+            <End Role="Produkty" EntitySet="Produkty" />
+            <End Role="Galeria_zdjęc" EntitySet="Galeria_zdjęc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kategorie_Producenci_Kategorie" Association="Self.FK_Kategorie_Producenci_Kategorie">
+            <End Role="Kategorie" EntitySet="Kategorie" />
+            <End Role="Kategorie_Producenci" EntitySet="Kategorie_Producenci" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kategorie_Producenci_Producenci" Association="Self.FK_Kategorie_Producenci_Producenci">
+            <End Role="Producenci" EntitySet="Producenci" />
+            <End Role="Kategorie_Producenci" EntitySet="Kategorie_Producenci" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Klientt_Adresy" Association="Self.FK_Klientt_Adresy">
+            <End Role="Adresy" EntitySet="Adresy" />
+            <End Role="Klientt" EntitySet="Klientt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pozyjce_Faktury_Egzemplarze" Association="Self.FK_Pozyjce_Faktury_Egzemplarze">
+            <End Role="Egzemplarze" EntitySet="Egzemplarze" />
+            <End Role="Pozyjce_Faktury" EntitySet="Pozyjce_Faktury" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pozyjce_Faktury_Faktury" Association="Self.FK_Pozyjce_Faktury_Faktury">
+            <End Role="Faktury" EntitySet="Faktury" />
+            <End Role="Pozyjce_Faktury" EntitySet="Pozyjce_Faktury" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Produkty_Kategorie_Producenci" Association="Self.FK_Produkty_Kategorie_Producenci">
+            <End Role="Kategorie_Producenci" EntitySet="Kategorie_Producenci" />
+            <End Role="Produkty" EntitySet="Produkty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zamówienia_Klientt" Association="Self.FK_Zamówienia_Klientt">
+            <End Role="Klientt" EntitySet="Klientt" />
+            <End Role="Zamówienia" EntitySet="Zamówienia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_zamówienia_produkty_Produkty" Association="Self.FK_zamówienia_produkty_Produkty">
+            <End Role="Produkty" EntitySet="Produkty" />
+            <End Role="zamówienia_produkty" EntitySet="zamówienia_produkty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_zamówienia_produkty_Zamówienia" Association="Self.FK_zamówienia_produkty_Zamówienia">
+            <End Role="Zamówienia" EntitySet="Zamówienia" />
+            <End Role="zamówienia_produkty" EntitySet="zamówienia_produkty" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SklepKomputerowyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Adresy">
+          <Key>
+            <PropertyRef Name="IdAdres" />
+          </Key>
+          <Property Name="IdAdres" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="miasto" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="miejscowość" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="nr_domu" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="kod_pocztowy" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Klientt" Relationship="Self.FK_Klientt_Adresy" FromRole="Adresy" ToRole="Klientt" />
+        </EntityType>
+        <EntityType Name="Egzemplarze">
+          <Key>
+            <PropertyRef Name="IdEgzemplarzu" />
+          </Key>
+          <Property Name="IdEgzemplarzu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProduktu" Type="Int32" />
+          <Property Name="kod_produktu" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="cena" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="data_sprzedaży" Type="DateTime" Precision="0" />
+          <Property Name="data_zakupu" Type="DateTime" Precision="0" />
+          <Property Name="czy_sprzedano" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Produkty" Relationship="Self.FK_Egzemplarze_Produkty" FromRole="Egzemplarze" ToRole="Produkty" />
+          <NavigationProperty Name="Pozyjce_Faktury" Relationship="Self.FK_Pozyjce_Faktury_Egzemplarze" FromRole="Egzemplarze" ToRole="Pozyjce_Faktury" />
+        </EntityType>
+        <EntityType Name="Faktury">
+          <Key>
+            <PropertyRef Name="IdFaktury" />
+          </Key>
+          <Property Name="IdFaktury" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdKlienta" Type="Int32" />
+          <Property Name="nr_faktury" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="data_sprzedaży" Type="DateTime" Precision="0" />
+          <Property Name="cena" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="forma_płatności" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="rodzaj_dokumentu" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Klientt" Relationship="Self.FK_Faktury_Klientt" FromRole="Faktury" ToRole="Klientt" />
+          <NavigationProperty Name="Pozyjce_Faktury" Relationship="Self.FK_Pozyjce_Faktury_Faktury" FromRole="Faktury" ToRole="Pozyjce_Faktury" />
+        </EntityType>
+        <EntityType Name="Galeria_zdjęc">
+          <Key>
+            <PropertyRef Name="Id_Galerii" />
+          </Key>
+          <Property Name="Id_Galerii" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Produktu" Type="Int32" />
+          <Property Name="nazwa" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="zdjęcie" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Produkty" Relationship="Self.FK_Galeria_zdjęc_Produkty" FromRole="Galeria_zdjęc" ToRole="Produkty" />
+        </EntityType>
+        <EntityType Name="Kategorie">
+          <Key>
+            <PropertyRef Name="Id_kategorii" />
+          </Key>
+          <Property Name="Id_kategorii" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nazwa_kategorii" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Kategorie_Producenci" Relationship="Self.FK_Kategorie_Producenci_Kategorie" FromRole="Kategorie" ToRole="Kategorie_Producenci" />
+        </EntityType>
+        <EntityType Name="Kategorie_Producenci">
+          <Key>
+            <PropertyRef Name="Id_Kat_prod" />
+          </Key>
+          <Property Name="Id_Kat_prod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Kat" Type="Int32" />
+          <Property Name="Id_producenta" Type="Int32" />
+          <NavigationProperty Name="Kategorie" Relationship="Self.FK_Kategorie_Producenci_Kategorie" FromRole="Kategorie_Producenci" ToRole="Kategorie" />
+          <NavigationProperty Name="Producenci" Relationship="Self.FK_Kategorie_Producenci_Producenci" FromRole="Kategorie_Producenci" ToRole="Producenci" />
+          <NavigationProperty Name="Produkty" Relationship="Self.FK_Produkty_Kategorie_Producenci" FromRole="Kategorie_Producenci" ToRole="Produkty" />
+        </EntityType>
+        <EntityType Name="Klientt">
+          <Key>
+            <PropertyRef Name="IdKlient" />
+          </Key>
+          <Property Name="IdKlient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Imie" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="Nazwisko" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="hasło" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="Nr_tele" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Id_Adresu" Type="Int32" />
+          <NavigationProperty Name="Adresy" Relationship="Self.FK_Klientt_Adresy" FromRole="Klientt" ToRole="Adresy" />
+          <NavigationProperty Name="Faktury" Relationship="Self.FK_Faktury_Klientt" FromRole="Klientt" ToRole="Faktury" />
+          <NavigationProperty Name="Zamówienia" Relationship="Self.FK_Zamówienia_Klientt" FromRole="Klientt" ToRole="Zamówienia" />
+        </EntityType>
+        <EntityType Name="Pozyjce_Faktury">
+          <Key>
+            <PropertyRef Name="Id_pozycji" />
+          </Key>
+          <Property Name="Id_pozycji" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_egzemplarzu" Type="Int32" />
+          <Property Name="Id_faktury" Type="Int32" />
+          <Property Name="cena" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Egzemplarze" Relationship="Self.FK_Pozyjce_Faktury_Egzemplarze" FromRole="Pozyjce_Faktury" ToRole="Egzemplarze" />
+          <NavigationProperty Name="Faktury" Relationship="Self.FK_Pozyjce_Faktury_Faktury" FromRole="Pozyjce_Faktury" ToRole="Faktury" />
+        </EntityType>
+        <EntityType Name="Producenci">
+          <Key>
+            <PropertyRef Name="Id_producenta" />
+          </Key>
+          <Property Name="Id_producenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa_producenta" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Kategorie_Producenci" Relationship="Self.FK_Kategorie_Producenci_Producenci" FromRole="Producenci" ToRole="Kategorie_Producenci" />
+        </EntityType>
+        <EntityType Name="Produkty">
+          <Key>
+            <PropertyRef Name="Id_produktu" />
+          </Key>
+          <Property Name="Id_produktu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_katergoria_prod" Type="Int32" />
+          <Property Name="nazwa_produktu" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="typ" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="wersja" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="zdjęcie" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="cena" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Egzemplarze" Relationship="Self.FK_Egzemplarze_Produkty" FromRole="Produkty" ToRole="Egzemplarze" />
+          <NavigationProperty Name="Galeria_zdjęc" Relationship="Self.FK_Galeria_zdjęc_Produkty" FromRole="Produkty" ToRole="Galeria_zdjęc" />
+          <NavigationProperty Name="Kategorie_Producenci" Relationship="Self.FK_Produkty_Kategorie_Producenci" FromRole="Produkty" ToRole="Kategorie_Producenci" />
+          <NavigationProperty Name="zamówienia_produkty" Relationship="Self.FK_zamówienia_produkty_Produkty" FromRole="Produkty" ToRole="zamówienia_produkty" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Zamówienia">
+          <Key>
+            <PropertyRef Name="IdZam" />
+          </Key>
+          <Property Name="IdZam" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdKli" Type="Int32" />
+          <Property Name="data_złożenia_zamówienia" Type="DateTime" Precision="0" />
+          <Property Name="czy_przyjeto_zam" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="data_przyjęcia_zam" Type="DateTime" Precision="0" />
+          <Property Name="zapłacono" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="data_wysyłki" Type="DateTime" Precision="0" />
+          <Property Name="czy_zam_zrealizowano" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Klientt" Relationship="Self.FK_Zamówienia_Klientt" FromRole="Zamówienia" ToRole="Klientt" />
+          <NavigationProperty Name="zamówienia_produkty" Relationship="Self.FK_zamówienia_produkty_Zamówienia" FromRole="Zamówienia" ToRole="zamówienia_produkty" />
+        </EntityType>
+        <EntityType Name="zamówienia_produkty">
+          <Key>
+            <PropertyRef Name="id_zam_prod" />
+          </Key>
+          <Property Name="id_zam_prod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_prod" Type="Int32" />
+          <Property Name="id_zam" Type="Int32" />
+          <NavigationProperty Name="Produkty" Relationship="Self.FK_zamówienia_produkty_Produkty" FromRole="zamówienia_produkty" ToRole="Produkty" />
+          <NavigationProperty Name="Zamówienia" Relationship="Self.FK_zamówienia_produkty_Zamówienia" FromRole="zamówienia_produkty" ToRole="Zamówienia" />
+        </EntityType>
+        <Association Name="FK_Klientt_Adresy">
+          <End Role="Adresy" Type="Self.Adresy" Multiplicity="0..1" />
+          <End Role="Klientt" Type="Self.Klientt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adresy">
+              <PropertyRef Name="IdAdres" />
+            </Principal>
+            <Dependent Role="Klientt">
+              <PropertyRef Name="Id_Adresu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Egzemplarze_Produkty">
+          <End Role="Produkty" Type="Self.Produkty" Multiplicity="0..1" />
+          <End Role="Egzemplarze" Type="Self.Egzemplarze" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produkty">
+              <PropertyRef Name="Id_produktu" />
+            </Principal>
+            <Dependent Role="Egzemplarze">
+              <PropertyRef Name="IdProduktu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pozyjce_Faktury_Egzemplarze">
+          <End Role="Egzemplarze" Type="Self.Egzemplarze" Multiplicity="0..1" />
+          <End Role="Pozyjce_Faktury" Type="Self.Pozyjce_Faktury" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Egzemplarze">
+              <PropertyRef Name="IdEgzemplarzu" />
+            </Principal>
+            <Dependent Role="Pozyjce_Faktury">
+              <PropertyRef Name="Id_egzemplarzu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Faktury_Klientt">
+          <End Role="Klientt" Type="Self.Klientt" Multiplicity="0..1" />
+          <End Role="Faktury" Type="Self.Faktury" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klientt">
+              <PropertyRef Name="IdKlient" />
+            </Principal>
+            <Dependent Role="Faktury">
+              <PropertyRef Name="IdKlienta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pozyjce_Faktury_Faktury">
+          <End Role="Faktury" Type="Self.Faktury" Multiplicity="0..1" />
+          <End Role="Pozyjce_Faktury" Type="Self.Pozyjce_Faktury" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faktury">
+              <PropertyRef Name="IdFaktury" />
+            </Principal>
+            <Dependent Role="Pozyjce_Faktury">
+              <PropertyRef Name="Id_faktury" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Galeria_zdjęc_Produkty">
+          <End Role="Produkty" Type="Self.Produkty" Multiplicity="0..1" />
+          <End Role="Galeria_zdjęc" Type="Self.Galeria_zdjęc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produkty">
+              <PropertyRef Name="Id_produktu" />
+            </Principal>
+            <Dependent Role="Galeria_zdjęc">
+              <PropertyRef Name="Id_Produktu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kategorie_Producenci_Kategorie">
+          <End Role="Kategorie" Type="Self.Kategorie" Multiplicity="0..1" />
+          <End Role="Kategorie_Producenci" Type="Self.Kategorie_Producenci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategorie">
+              <PropertyRef Name="Id_kategorii" />
+            </Principal>
+            <Dependent Role="Kategorie_Producenci">
+              <PropertyRef Name="Id_Kat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kategorie_Producenci_Producenci">
+          <End Role="Producenci" Type="Self.Producenci" Multiplicity="0..1" />
+          <End Role="Kategorie_Producenci" Type="Self.Kategorie_Producenci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producenci">
+              <PropertyRef Name="Id_producenta" />
+            </Principal>
+            <Dependent Role="Kategorie_Producenci">
+              <PropertyRef Name="Id_producenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Produkty_Kategorie_Producenci">
+          <End Role="Kategorie_Producenci" Type="Self.Kategorie_Producenci" Multiplicity="0..1" />
+          <End Role="Produkty" Type="Self.Produkty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategorie_Producenci">
+              <PropertyRef Name="Id_Kat_prod" />
+            </Principal>
+            <Dependent Role="Produkty">
+              <PropertyRef Name="id_katergoria_prod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zamówienia_Klientt">
+          <End Role="Klientt" Type="Self.Klientt" Multiplicity="0..1" />
+          <End Role="Zamówienia" Type="Self.Zamówienia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klientt">
+              <PropertyRef Name="IdKlient" />
+            </Principal>
+            <Dependent Role="Zamówienia">
+              <PropertyRef Name="IdKli" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_zamówienia_produkty_Produkty">
+          <End Role="Produkty" Type="Self.Produkty" Multiplicity="0..1" />
+          <End Role="zamówienia_produkty" Type="Self.zamówienia_produkty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produkty">
+              <PropertyRef Name="Id_produktu" />
+            </Principal>
+            <Dependent Role="zamówienia_produkty">
+              <PropertyRef Name="id_prod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_zamówienia_produkty_Zamówienia">
+          <End Role="Zamówienia" Type="Self.Zamówienia" Multiplicity="0..1" />
+          <End Role="zamówienia_produkty" Type="Self.zamówienia_produkty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zamówienia">
+              <PropertyRef Name="IdZam" />
+            </Principal>
+            <Dependent Role="zamówienia_produkty">
+              <PropertyRef Name="id_zam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SklepKomputerowyEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Adresy" EntityType="Self.Adresy" />
+          <EntitySet Name="Egzemplarze" EntityType="Self.Egzemplarze" />
+          <EntitySet Name="Faktury" EntityType="Self.Faktury" />
+          <EntitySet Name="Galeria_zdjęc" EntityType="Self.Galeria_zdjęc" />
+          <EntitySet Name="Kategorie" EntityType="Self.Kategorie" />
+          <EntitySet Name="Kategorie_Producenci" EntityType="Self.Kategorie_Producenci" />
+          <EntitySet Name="Klientt" EntityType="Self.Klientt" />
+          <EntitySet Name="Pozyjce_Faktury" EntityType="Self.Pozyjce_Faktury" />
+          <EntitySet Name="Producenci" EntityType="Self.Producenci" />
+          <EntitySet Name="Produkty" EntityType="Self.Produkty" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Zamówienia" EntityType="Self.Zamówienia" />
+          <EntitySet Name="zamówienia_produkty" EntityType="Self.zamówienia_produkty" />
+          <AssociationSet Name="FK_Klientt_Adresy" Association="Self.FK_Klientt_Adresy">
+            <End Role="Adresy" EntitySet="Adresy" />
+            <End Role="Klientt" EntitySet="Klientt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Egzemplarze_Produkty" Association="Self.FK_Egzemplarze_Produkty">
+            <End Role="Produkty" EntitySet="Produkty" />
+            <End Role="Egzemplarze" EntitySet="Egzemplarze" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pozyjce_Faktury_Egzemplarze" Association="Self.FK_Pozyjce_Faktury_Egzemplarze">
+            <End Role="Egzemplarze" EntitySet="Egzemplarze" />
+            <End Role="Pozyjce_Faktury" EntitySet="Pozyjce_Faktury" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Faktury_Klientt" Association="Self.FK_Faktury_Klientt">
+            <End Role="Klientt" EntitySet="Klientt" />
+            <End Role="Faktury" EntitySet="Faktury" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pozyjce_Faktury_Faktury" Association="Self.FK_Pozyjce_Faktury_Faktury">
+            <End Role="Faktury" EntitySet="Faktury" />
+            <End Role="Pozyjce_Faktury" EntitySet="Pozyjce_Faktury" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Galeria_zdjęc_Produkty" Association="Self.FK_Galeria_zdjęc_Produkty">
+            <End Role="Produkty" EntitySet="Produkty" />
+            <End Role="Galeria_zdjęc" EntitySet="Galeria_zdjęc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kategorie_Producenci_Kategorie" Association="Self.FK_Kategorie_Producenci_Kategorie">
+            <End Role="Kategorie" EntitySet="Kategorie" />
+            <End Role="Kategorie_Producenci" EntitySet="Kategorie_Producenci" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kategorie_Producenci_Producenci" Association="Self.FK_Kategorie_Producenci_Producenci">
+            <End Role="Producenci" EntitySet="Producenci" />
+            <End Role="Kategorie_Producenci" EntitySet="Kategorie_Producenci" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Produkty_Kategorie_Producenci" Association="Self.FK_Produkty_Kategorie_Producenci">
+            <End Role="Kategorie_Producenci" EntitySet="Kategorie_Producenci" />
+            <End Role="Produkty" EntitySet="Produkty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zamówienia_Klientt" Association="Self.FK_Zamówienia_Klientt">
+            <End Role="Klientt" EntitySet="Klientt" />
+            <End Role="Zamówienia" EntitySet="Zamówienia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_zamówienia_produkty_Produkty" Association="Self.FK_zamówienia_produkty_Produkty">
+            <End Role="Produkty" EntitySet="Produkty" />
+            <End Role="zamówienia_produkty" EntitySet="zamówienia_produkty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_zamówienia_produkty_Zamówienia" Association="Self.FK_zamówienia_produkty_Zamówienia">
+            <End Role="Zamówienia" EntitySet="Zamówienia" />
+            <End Role="zamówienia_produkty" EntitySet="zamówienia_produkty" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SklepKomputerowyModelStoreContainer" CdmEntityContainer="SklepKomputerowyEntities">
+          <EntitySetMapping Name="Adresy">
+            <EntityTypeMapping TypeName="SklepKomputerowyModel.Adresy">
+              <MappingFragment StoreEntitySet="Adresy">
+                <ScalarProperty Name="IdAdres" ColumnName="IdAdres" />
+                <ScalarProperty Name="miasto" ColumnName="miasto" />
+                <ScalarProperty Name="miejscowość" ColumnName="miejscowość" />
+                <ScalarProperty Name="nr_domu" ColumnName="nr_domu" />
+                <ScalarProperty Name="kod_pocztowy" ColumnName="kod_pocztowy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Egzemplarze">
+            <EntityTypeMapping TypeName="SklepKomputerowyModel.Egzemplarze">
+              <MappingFragment StoreEntitySet="Egzemplarze">
+                <ScalarProperty Name="IdEgzemplarzu" ColumnName="IdEgzemplarzu" />
+                <ScalarProperty Name="IdProduktu" ColumnName="IdProduktu" />
+                <ScalarProperty Name="kod_produktu" ColumnName="kod_produktu" />
+                <ScalarProperty Name="cena" ColumnName="cena" />
+                <ScalarProperty Name="data_sprzedaży" ColumnName="data_sprzedaży" />
+                <ScalarProperty Name="data_zakupu" ColumnName="data_zakupu" />
+                <ScalarProperty Name="czy_sprzedano" ColumnName="czy_sprzedano" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Faktury">
+            <EntityTypeMapping TypeName="SklepKomputerowyModel.Faktury">
+              <MappingFragment StoreEntitySet="Faktury">
+                <ScalarProperty Name="IdFaktury" ColumnName="IdFaktury" />
+                <ScalarProperty Name="IdKlienta" ColumnName="IdKlienta" />
+                <ScalarProperty Name="nr_faktury" ColumnName="nr_faktury" />
+                <ScalarProperty Name="data_sprzedaży" ColumnName="data_sprzedaży" />
+                <ScalarProperty Name="cena" ColumnName="cena" />
+                <ScalarProperty Name="forma_płatności" ColumnName="forma_płatności" />
+                <ScalarProperty Name="rodzaj_dokumentu" ColumnName="rodzaj_dokumentu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Galeria_zdjęc">
+            <EntityTypeMapping TypeName="SklepKomputerowyModel.Galeria_zdjęc">
+              <MappingFragment StoreEntitySet="Galeria_zdjęc">
+                <ScalarProperty Name="Id_Galerii" ColumnName="Id_Galerii" />
+                <ScalarProperty Name="Id_Produktu" ColumnName="Id_Produktu" />
+                <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+                <ScalarProperty Name="zdjęcie" ColumnName="zdjęcie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kategorie">
+            <EntityTypeMapping TypeName="SklepKomputerowyModel.Kategorie">
+              <MappingFragment StoreEntitySet="Kategorie">
+                <ScalarProperty Name="Id_kategorii" ColumnName="Id_kategorii" />
+                <ScalarProperty Name="nazwa_kategorii" ColumnName="nazwa_kategorii" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kategorie_Producenci">
+            <EntityTypeMapping TypeName="SklepKomputerowyModel.Kategorie_Producenci">
+              <MappingFragment StoreEntitySet="Kategorie_Producenci">
+                <ScalarProperty Name="Id_Kat_prod" ColumnName="Id_Kat_prod" />
+                <ScalarProperty Name="Id_Kat" ColumnName="Id_Kat" />
+                <ScalarProperty Name="Id_producenta" ColumnName="Id_producenta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Klientt">
+            <EntityTypeMapping TypeName="SklepKomputerowyModel.Klientt">
+              <MappingFragment StoreEntitySet="Klientt">
+                <ScalarProperty Name="IdKlient" ColumnName="IdKlient" />
+                <ScalarProperty Name="Imie" ColumnName="Imie" />
+                <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="hasło" ColumnName="hasło" />
+                <ScalarProperty Name="Nr_tele" ColumnName="Nr_tele" />
+                <ScalarProperty Name="Id_Adresu" ColumnName="Id_Adresu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pozyjce_Faktury">
+            <EntityTypeMapping TypeName="SklepKomputerowyModel.Pozyjce_Faktury">
+              <MappingFragment StoreEntitySet="Pozyjce_Faktury">
+                <ScalarProperty Name="Id_pozycji" ColumnName="Id_pozycji" />
+                <ScalarProperty Name="Id_egzemplarzu" ColumnName="Id_egzemplarzu" />
+                <ScalarProperty Name="Id_faktury" ColumnName="Id_faktury" />
+                <ScalarProperty Name="cena" ColumnName="cena" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producenci">
+            <EntityTypeMapping TypeName="SklepKomputerowyModel.Producenci">
+              <MappingFragment StoreEntitySet="Producenci">
+                <ScalarProperty Name="Id_producenta" ColumnName="Id_producenta" />
+                <ScalarProperty Name="Nazwa_producenta" ColumnName="Nazwa_producenta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Produkty">
+            <EntityTypeMapping TypeName="SklepKomputerowyModel.Produkty">
+              <MappingFragment StoreEntitySet="Produkty">
+                <ScalarProperty Name="Id_produktu" ColumnName="Id_produktu" />
+                <ScalarProperty Name="id_katergoria_prod" ColumnName="id_katergoria_prod" />
+                <ScalarProperty Name="nazwa_produktu" ColumnName="nazwa_produktu" />
+                <ScalarProperty Name="typ" ColumnName="typ" />
+                <ScalarProperty Name="wersja" ColumnName="wersja" />
+                <ScalarProperty Name="opis" ColumnName="opis" />
+                <ScalarProperty Name="zdjęcie" ColumnName="zdjęcie" />
+                <ScalarProperty Name="cena" ColumnName="cena" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SklepKomputerowyModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zamówienia">
+            <EntityTypeMapping TypeName="SklepKomputerowyModel.Zamówienia">
+              <MappingFragment StoreEntitySet="Zamówienia">
+                <ScalarProperty Name="IdZam" ColumnName="IdZam" />
+                <ScalarProperty Name="IdKli" ColumnName="IdKli" />
+                <ScalarProperty Name="data_złożenia_zamówienia" ColumnName="data_złożenia_zamówienia" />
+                <ScalarProperty Name="czy_przyjeto_zam" ColumnName="czy_przyjeto_zam" />
+                <ScalarProperty Name="data_przyjęcia_zam" ColumnName="data_przyjęcia_zam" />
+                <ScalarProperty Name="zapłacono" ColumnName="zapłacono" />
+                <ScalarProperty Name="data_wysyłki" ColumnName="data_wysyłki" />
+                <ScalarProperty Name="czy_zam_zrealizowano" ColumnName="czy_zam_zrealizowano" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="zamówienia_produkty">
+            <EntityTypeMapping TypeName="SklepKomputerowyModel.zamówienia_produkty">
+              <MappingFragment StoreEntitySet="zamówienia_produkty">
+                <ScalarProperty Name="id_zam_prod" ColumnName="id_zam_prod" />
+                <ScalarProperty Name="id_prod" ColumnName="id_prod" />
+                <ScalarProperty Name="id_zam" ColumnName="id_zam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,43 @@
+﻿@model Sklepik.Models.DB.Galeria_zdjęc
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Layout/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Galeria_zdjęc</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nazwa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nazwa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.zdjęcie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.zdjęcie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Produkty.nazwa_produktu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Produkty.nazwa_produktu)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Galerii }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
